@@ -1,8 +1,6 @@
 import React from "react";
 
-type ProgressBarProps = {
-  completedPercentage: number;
-};
+
 
 const ProgressBar = ({
   completedPercentage,
