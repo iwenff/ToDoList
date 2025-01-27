@@ -31,21 +31,22 @@ const TaskList = ({
 }: TaskListProps) => {
   return (
     <ul>
-      <AnimatePresence>
-        {tasks.map((task) => (
-          <TaskItem
-            key={task.id}
-            task={task}
-            editTaskId={editTaskId}
-            editTaskTitle={editTaskTitle}
-            setEditTaskTitle={setEditTaskTitle}
-            onComplete={onComplete}
-            onDelete={onDelete}
-            onEdit={onEdit}
-            onSave={onSave}
-          />
-        ))}
-      </AnimatePresence>
+    <AnimatePresence>
+      {tasks.length > 0 &&
+      tasks.map((task) => (
+      <TaskItem
+        key={task.id}
+        task={task}
+        editTaskId={editTaskId}
+        editTaskTitle={editTaskTitle}
+        setEditTaskTitle={setEditTaskTitle}
+        onComplete={onComplete}
+        onDelete={onDelete}
+        onEdit={onEdit}
+        onSave={onSave}
+      />
+    ))}
+  </AnimatePresence>
     </ul>
   );
 };

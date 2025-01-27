@@ -20,7 +20,7 @@ describe("Register component", () => {
       screen.getByRole("button", { name: /Зарегистрироваться/i })
     ).toBeInTheDocument();
   });
-
+  
   it("shows error if registration fields are empty", () => {
     render(<Register />);
     const button = screen.getByRole("button", { name: /Зарегистрироваться/i });

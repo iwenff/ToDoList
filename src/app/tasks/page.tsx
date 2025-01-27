@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useMemo } from "react";
 import { useState, useEffect, useRef } from "react";
 import ProgressBar from "../components/Progressbar";
 import TaskList from "../components/TaskList";
@@ -30,7 +30,10 @@ export default function Tasks() {
   }, [tasks]);
 
   const addTask = () => {
-    if (newTask.trim() === "") return;
+    if (newTask.trim() === "") {
+      alert("Задача не может быть пустой!");
+      return;
+    };
     const newTasks = [
       ...tasks,
       { id: tasks.length + 1, title: newTask.trim(), completed: false },
@@ -66,11 +69,13 @@ export default function Tasks() {
     setEditTaskTitle("");
   };
 
-  const completedPercentage = tasks.length
-    ? Math.round(
-        (tasks.filter((task) => task.completed).length / tasks.length) * 100
-      )
-    : 0;
+  const completedPercentage = useMemo(() => {
+    return tasks.length
+      ? Math.round(
+          (tasks.filter((task) => task.completed).length / tasks.length) * 100
+        )
+      : 0;
+  }, [tasks]);
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
