@@ -1,22 +1,22 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React from "react"
+import { motion } from "framer-motion"
 
 type Task = {
-  id: number;
-  title: string;
-  completed: boolean;
-};
+  id: number
+  title: string
+  completed: boolean
+}
 
 type TaskItemProps = {
-  task: Task;
-  onComplete: (id: number) => void;
-  onDelete: (id: number) => void;
-  onEdit: (id: number, title: string) => void;
-  onSave: (id: number) => void;
-  editTaskId: number | null;
-  editTaskTitle: string;
-  setEditTaskTitle: (title: string) => void;
-};
+  task: Task
+  onComplete: (id: number) => void
+  onDelete: (id: number) => void
+  onEdit: (id: number, title: string) => void
+  onSave: (id: number) => void
+  editTaskId: number | null
+  editTaskTitle: string
+  setEditTaskTitle: (title: string) => void
+}
 
 const TaskItem = ({
   task,
@@ -85,7 +85,7 @@ const TaskItem = ({
         Удалить
       </button>
     </motion.li>
-  );
-};
+  )
+}
 
-export default React.memo(TaskItem);
+export default React.memo(TaskItem)

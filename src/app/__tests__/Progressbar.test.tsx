@@ -8,11 +8,11 @@ describe("ProgressBar component", () => {
     render(<ProgressBar completedPercentage={completedPercentage} />)
     const percentageText = screen.getByText(/Выполнено: 75%/i)
     expect(percentageText).toBeInTheDocument()
-    
-  it("applies correct width to the progress bar", () => {
-    render(<ProgressBar completedPercentage={75} />);
-    const progressBar = screen.getByTestId("progress-bar");
-    expect(progressBar).toHaveStyle("width: 75%");
-    });
+
+    it("applies correct width to the progress bar", () => {
+      render(<ProgressBar completedPercentage={75} />)
+      const progressBar = screen.getByTestId("progress-bar")
+      expect(progressBar).toHaveStyle("width: 75%")
+    })
   })
 })

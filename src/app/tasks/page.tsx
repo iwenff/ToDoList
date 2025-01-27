@@ -1,90 +1,90 @@
-"use client";
-import React, { useMemo } from "react";
-import { useState, useEffect, useRef } from "react";
-import ProgressBar from "../components/Progressbar";
-import TaskList from "../components/TaskList";
+"use client"
+import React, { useMemo } from "react"
+import { useState, useEffect, useRef } from "react"
+import ProgressBar from "../components/Progressbar"
+import TaskList from "../components/TaskList"
 
 type Task = {
-  id: number;
-  title: string;
-  completed: boolean;
-};
+  id: number
+  title: string
+  completed: boolean
+}
 
 export default function Tasks() {
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [newTask, setNewTask] = useState("");
-  const [state, setState] = useState("Создайте вашу первую задачу");
-  const [editTaskId, setEditTaskId] = useState<number | null>(null);
-  const [editTaskTitle, setEditTaskTitle] = useState("");
+  const [tasks, setTasks] = useState<Task[]>([])
+  const [newTask, setNewTask] = useState("")
+  const [state, setState] = useState("Создайте вашу первую задачу")
+  const [editTaskId, setEditTaskId] = useState<number | null>(null)
+  const [editTaskTitle, setEditTaskTitle] = useState("")
 
-  const addRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    const savedTasks = localStorage.getItem("tasks");
-    if (savedTasks) setTasks(JSON.parse(savedTasks));
-  }, []);
+  const addRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    setState(tasks.length > 0 ? "Ваши задачи" : "Создайте вашу первую задачу");
-  }, [tasks]);
+    const savedTasks = localStorage.getItem("tasks")
+    if (savedTasks) setTasks(JSON.parse(savedTasks))
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+    setState(tasks.length > 0 ? "Ваши задачи" : "Создайте вашу первую задачу")
+  }, [tasks])
 
   const addTask = () => {
     if (newTask.trim() === "") {
-      alert("Задача не может быть пустой!");
-      return;
-    };
+      alert("Задача не может быть пустой!")
+      return
+    }
     const newTasks = [
       ...tasks,
       { id: tasks.length + 1, title: newTask.trim(), completed: false },
-    ];
-    setTasks(newTasks);
-    setNewTask("");
-  };
+    ]
+    setTasks(newTasks)
+    setNewTask("")
+  }
 
   const markAsCompleted = (id: number) => {
     setTasks(
       tasks.map((task) =>
         task.id === id ? { ...task, completed: true } : task
       )
-    );
-  };
+    )
+  }
 
   const deleteTask = (id: number) => {
-    setTasks(tasks.filter((task) => task.id !== id));
-  };
+    setTasks(tasks.filter((task) => task.id !== id))
+  }
 
   const startEditingTask = (taskId: number, currentTitle: string) => {
-    setEditTaskId(taskId);
-    setEditTaskTitle(currentTitle);
-  };
+    setEditTaskId(taskId)
+    setEditTaskTitle(currentTitle)
+  }
 
   const saveTask = (taskId: number) => {
     setTasks(
       tasks.map((task) =>
         task.id === taskId ? { ...task, title: editTaskTitle.trim() } : task
       )
-    );
-    setEditTaskId(null);
-    setEditTaskTitle("");
-  };
+    )
+    setEditTaskId(null)
+    setEditTaskTitle("")
+  }
 
   const completedPercentage = useMemo(() => {
     return tasks.length
       ? Math.round(
           (tasks.filter((task) => task.completed).length / tasks.length) * 100
         )
-      : 0;
-  }, [tasks]);
+      : 0
+  }, [tasks])
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      addTask();
+      addTask()
       if (addRef.current) {
-        addRef.current.focus();
+        addRef.current.focus()
       }
     }
-  };
+  }
 
   return (
     <main className="p-6 bg-gray-100 min-h-screen">
@@ -123,5 +123,5 @@ export default function Tasks() {
         />
       </div>
     </main>
-  );
+  )
 }

@@ -1,9 +1,9 @@
-import React from "react";
+import React from "react"
 
 const ProgressBar = ({
   completedPercentage,
 }: {
-  completedPercentage: number;
+  completedPercentage: number
 }) => (
   <div className="mb-6">
     <h2 className="text-xl font-semibold mb-2">Прогресс выполнения</h2>
@@ -17,6 +17,6 @@ const ProgressBar = ({
       Выполнено: {completedPercentage}%
     </p>
   </div>
-);
+)
 
-export default ProgressBar;
+export default ProgressBar

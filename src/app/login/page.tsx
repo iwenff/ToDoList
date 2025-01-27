@@ -1,25 +1,25 @@
-"use client";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+"use client"
+import { useRouter } from "next/navigation"
+import React, { useState } from "react"
+import { motion } from "framer-motion"
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const router = useRouter();
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
+  const router = useRouter()
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!email || !password) {
-      setError("Все поля должны быть заполнены!");
-      return;
+      setError("Все поля должны быть заполнены!")
+      return
     }
 
-    setError("");
-    console.log("вход", { email, password });
-    router.push("/tasks");
-  };
+    setError("")
+    console.log("вход", { email, password })
+    router.push("/tasks")
+  }
 
   return (
     <main className="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
@@ -67,7 +67,7 @@ const Login = () => {
         </form>
       </motion.div>
     </main>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

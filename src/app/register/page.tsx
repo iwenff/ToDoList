@@ -1,25 +1,25 @@
-"use client";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+"use client"
+import { useRouter } from "next/navigation"
+import React, { useState } from "react"
+import { motion } from "framer-motion"
 
 const Register = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const router = useRouter();
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
+  const router = useRouter()
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!email || !password) {
-      setError("Вы заполнили не все поля!");
-      return;
+      setError("Вы заполнили не все поля!")
+      return
     }
 
-    setError("");
-    console.log("регистрация", { email, password });
-    router.push("/login");
-  };
+    setError("")
+    console.log("регистрация", { email, password })
+    router.push("/login")
+  }
 
   return (
     <main className="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
@@ -61,7 +61,7 @@ const Register = () => {
         </form>
       </motion.div>
     </main>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register
